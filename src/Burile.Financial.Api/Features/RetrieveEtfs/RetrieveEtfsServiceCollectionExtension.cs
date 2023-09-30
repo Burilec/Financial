@@ -3,8 +3,8 @@ using Burile.Financial.TwelveData.Clients.Interfaces;
 
 namespace Burile.Financial.Api.Features.RetrieveEtfs;
 
-internal static class RetrieveEtfsServiceCollectionExtension
+public static class RetrieveEtfsServiceCollectionExtension
 {
-    internal static IServiceCollection AddRetrieveEtfsServices(this IServiceCollection serviceCollection)
+    public static IServiceCollection AddRetrieveEtfsServices(this IServiceCollection serviceCollection)
         => serviceCollection.AddScoped<ITwelveDataClient, TwelveDataClient>();
 }

@@ -11,16 +11,16 @@ public sealed class TwelveDataClient : ITwelveDataClient
     public TwelveDataClient(IHttpClientFactory httpClientFactory)
         => _httpClient = httpClientFactory.CreateClient(nameof(TwelveDataClient));
 
-    public async Task<string> GetEtfsAsync()
-        => await RequestApiAsync(ApiFunction.ETF).ConfigureAwait(false);
+    public async Task<string> GetEtfsAsync(CancellationToken cancellationToken = default)
+        => await RequestApiAsync(ApiFunction.ETF, cancellationToken).ConfigureAwait(false);
 
-    private async Task<string> RequestApiAsync(ApiFunction function)
+    private async Task<string> RequestApiAsync(ApiFunction function, CancellationToken cancellationToken = default)
     {
         var httpRequestMessage = ComposeHttpRequest(function);
 
-        var responseMessage = await _httpClient.SendAsync(httpRequestMessage).ConfigureAwait(false);
+        var responseMessage = await _httpClient.SendAsync(httpRequestMessage, cancellationToken).ConfigureAwait(false);
 
-        var jsonString = await responseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+        var jsonString = await responseMessage.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
 
         return jsonString;
     }

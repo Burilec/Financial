@@ -10,9 +10,9 @@ public sealed class RetrieveEtfsHandler : IRequestHandler<RetrieveEtfsQuery, str
     public RetrieveEtfsHandler(ITwelveDataClient twelveDataClient)
         => _twelveDataClient = twelveDataClient;
 
-    public async Task<string> Handle(RetrieveEtfsQuery request, CancellationToken cancellationToken)
+    public async Task<string> Handle(RetrieveEtfsQuery request, CancellationToken cancellationToken = default)
     {
-        var etfs = await _twelveDataClient.GetEtfsAsync();
+        var etfs = await _twelveDataClient.GetEtfsAsync(cancellationToken);
 
         return etfs;
     }
