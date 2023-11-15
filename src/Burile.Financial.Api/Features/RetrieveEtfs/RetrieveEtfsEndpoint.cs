@@ -8,7 +8,7 @@ namespace Burile.Financial.Api.Features.RetrieveEtfs;
 public sealed class RetrieveEtfsEndpoint : ControllerBase
 {
     [HttpGet]
-    [Route("etf")]
+    [Route("etfs")]
     public async Task<IActionResult> GetAsync([FromServices] IMediator mediator,
                                               CancellationToken cancellationToken = default)
     {
