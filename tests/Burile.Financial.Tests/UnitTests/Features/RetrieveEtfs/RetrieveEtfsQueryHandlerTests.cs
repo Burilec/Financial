@@ -7,16 +7,16 @@ using Xunit;
 
 namespace Burile.Financial.Tests.UnitTests.Features.RetrieveEtfs;
 
-public sealed class RetrieveEtfsHandlerTests
+public sealed class RetrieveEtfsQueryHandlerTests
 {
-    private readonly RetrieveEtfsHandler _retrieveEtfsHandler;
+    private readonly RetrieveEtfsQueryHandler _retrieveEtfsQueryHandler;
     private readonly ITwelveDataClient _twelveDataClient;
 
-    public RetrieveEtfsHandlerTests()
+    public RetrieveEtfsQueryHandlerTests()
     {
         _twelveDataClient = Substitute.For<ITwelveDataClient>();
 
-        _retrieveEtfsHandler = new RetrieveEtfsHandler(_twelveDataClient);
+        _retrieveEtfsQueryHandler = new RetrieveEtfsQueryHandler(_twelveDataClient);
     }
 
     [Fact]
@@ -30,7 +30,7 @@ public sealed class RetrieveEtfsHandlerTests
         _twelveDataClient.GetEtfsAsync().Returns(text);
 
         //Act
-        var handle = await _retrieveEtfsHandler.Handle(retrieveEtfsQuery);
+        var handle = await _retrieveEtfsQueryHandler.Handle(retrieveEtfsQuery);
 
         //Assert
         handle.Should().Be(text);
