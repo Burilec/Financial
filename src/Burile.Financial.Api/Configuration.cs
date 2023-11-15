@@ -2,9 +2,9 @@ using Burile.Financial.Api.Features.RetrieveEtfs;
 
 namespace Burile.Financial.Api;
 
-internal static class Configuration
+public static class Configuration
 {
-    internal static IWebHostBuilder BaseApiConfiguration(this IWebHostBuilder builder)
+    public static IWebHostBuilder BaseApiConfiguration(this IWebHostBuilder builder)
         => builder
           .ConfigureServices(ConfigureServices())
           .Configure(ConfigureApp());
