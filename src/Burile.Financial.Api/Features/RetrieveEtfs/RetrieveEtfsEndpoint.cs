@@ -14,7 +14,7 @@ public sealed class RetrieveEtfsEndpoint : ControllerBase
     {
         var query = new RetrieveEtfsQuery();
 
-        var response = await mediator.Send(query, cancellationToken).ConfigureAwait(continueOnCapturedContext: false);
+        var response = await mediator.Send(query, cancellationToken).ConfigureAwait(false);
 
         return new OkObjectResult(response);
     }

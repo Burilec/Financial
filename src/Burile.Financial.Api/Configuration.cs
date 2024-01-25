@@ -1,4 +1,6 @@
 using Burile.Financial.Api.Features.RetrieveEtfs;
+using Burile.Financial.Infrastructure.Data.Contexts;
+using Burile.Financial.Infrastructure.Extensions;
 
 namespace Burile.Financial.Api;
 
@@ -26,12 +28,17 @@ public static class Configuration
         };
 
     private static Action<WebHostBuilderContext, IServiceCollection> ConfigureServices()
-        => static (_, service)
+        => static (context, service)
             => service.AddEndpointsApiExplorer()
                       .AddSwaggerGen()
+                      .AddMySqlDbContext<FinancialContext>(context.Configuration,
+                                                           context.Configuration
+                                                                  .GetConnectionString("Api"),
+                                                           ServiceLifetime.Scoped,
+                                                           typeof(Program).Assembly, typeof(FinancialContext).Assembly)
                       .AddHttpClient()
-                      .AddMediatR(static configuration =>
-                                      configuration.RegisterServicesFromAssemblyContaining<Program>())
+                      .AddMediatR(static configuration
+                                      => configuration.RegisterServicesFromAssemblyContaining<Program>())
                       .AddRetrieveEtfsServices()
                       .AddControllers();
 }

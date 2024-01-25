@@ -6,20 +6,15 @@ using Xunit;
 namespace Burile.Financial.Tests.IntegrationTests.Features.RetrieveEtfs;
 
 [Collection("RetrieveEtfsBackgroundServicesTest")]
-public sealed class RetrieveEtfsTests
+public sealed class RetrieveEtfsTests(RetrieveEtfsBackgroundServicesFixture retrieveEtfsBackgroundServicesFixture)
 {
-    private readonly RetrieveEtfsBackgroundServicesFixture _retrieveEtfsBackgroundServicesFixture;
-
-    public RetrieveEtfsTests(RetrieveEtfsBackgroundServicesFixture retrieveEtfsBackgroundServicesFixture)
-        => _retrieveEtfsBackgroundServicesFixture = retrieveEtfsBackgroundServicesFixture;
-
     [Fact]
     public async Task RetrieveEtfs()
     {
         //Arrange
 
         //Act
-        var responseMessage = await _retrieveEtfsBackgroundServicesFixture.HttpClient.GetAsync("api/etfs");
+        var responseMessage = await retrieveEtfsBackgroundServicesFixture.HttpClient.GetAsync("api/etfs");
 
         var content = await responseMessage.Content.ReadAsStringAsync();
 

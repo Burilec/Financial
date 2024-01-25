@@ -1,0 +1,6 @@
+@Burile.Financial.Customers.Api_HostAddress = http://localhost:5117
+
+GET {{Burile.Financial.Customers.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

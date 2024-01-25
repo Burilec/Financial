@@ -9,9 +9,7 @@ using static Microsoft.Extensions.Hosting.Host;
 namespace Burile.Financial.Tests.IntegrationTests.Features.RetrieveEtfs.Fixtures;
 
 [CollectionDefinition("RetrieveEtfsBackgroundServicesTest")]
-public class BackgroundServicesCollection : ICollectionFixture<RetrieveEtfsBackgroundServicesFixture>
-{
-}
+public class BackgroundServicesCollection : ICollectionFixture<RetrieveEtfsBackgroundServicesFixture>;
 
 public sealed class RetrieveEtfsBackgroundServicesFixture : WebInfrastructureFixtureBase
 {

@@ -4,12 +4,9 @@ using Burile.Financial.TwelveData.Enums;
 
 namespace Burile.Financial.TwelveData.Clients;
 
-public sealed class TwelveDataClient : ITwelveDataClient
+public sealed class TwelveDataClient(IHttpClientFactory httpClientFactory) : ITwelveDataClient
 {
-    private readonly HttpClient _httpClient;
-
-    public TwelveDataClient(IHttpClientFactory httpClientFactory)
-        => _httpClient = httpClientFactory.CreateClient(nameof(TwelveDataClient));
+    private readonly HttpClient _httpClient = httpClientFactory.CreateClient(nameof(TwelveDataClient));
 
     public async Task<string> GetEtfsAsync(CancellationToken cancellationToken = default)
         => await RequestApiAsync(ApiFunction.ETF, cancellationToken).ConfigureAwait(false);

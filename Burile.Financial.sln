@@ -10,6 +10,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Burile.Financial.Api", "src
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Burile.Financial.Tests", "tests\Burile.Financial.Tests\Burile.Financial.Tests.csproj", "{A3146A3B-AC95-49D4-B961-F531154953D8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Burile.Financial.CronJobs", "src\Burile.Financial.CronJobs\Burile.Financial.CronJobs.csproj", "{75E00DA7-FAAA-45D3-A79F-7FCF530728F4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Burile.Financial.Infrastructure", "src\Burile.Financial.Infrastructure\Burile.Financial.Infrastructure.csproj", "{EF109509-E487-486F-B62F-7FA0E6E14582}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{04279C0D-2088-4A09-8DE3-9B38A9EA5326}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Burile.Financial.AlphaVantage", "src\Burile.Financial.AlphaVantage\Burile.Financial.AlphaVantage.csproj", "{A578A208-6511-4910-9768-243C6568555D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Burile.Financial.Domain", "src\Burile.Financial.Domain\Burile.Financial.Domain.csproj", "{8119C6D9-FD7E-4A97-9CCA-AD91107587C0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -28,10 +41,30 @@ Global
 		{A3146A3B-AC95-49D4-B961-F531154953D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A3146A3B-AC95-49D4-B961-F531154953D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A3146A3B-AC95-49D4-B961-F531154953D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75E00DA7-FAAA-45D3-A79F-7FCF530728F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75E00DA7-FAAA-45D3-A79F-7FCF530728F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75E00DA7-FAAA-45D3-A79F-7FCF530728F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75E00DA7-FAAA-45D3-A79F-7FCF530728F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF109509-E487-486F-B62F-7FA0E6E14582}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF109509-E487-486F-B62F-7FA0E6E14582}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF109509-E487-486F-B62F-7FA0E6E14582}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF109509-E487-486F-B62F-7FA0E6E14582}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A578A208-6511-4910-9768-243C6568555D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A578A208-6511-4910-9768-243C6568555D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A578A208-6511-4910-9768-243C6568555D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A578A208-6511-4910-9768-243C6568555D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8119C6D9-FD7E-4A97-9CCA-AD91107587C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8119C6D9-FD7E-4A97-9CCA-AD91107587C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8119C6D9-FD7E-4A97-9CCA-AD91107587C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8119C6D9-FD7E-4A97-9CCA-AD91107587C0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{00548E7B-4D95-46ED-8ADB-376EAC1D6B3D} = {D43FEFE1-6CAC-4E45-844E-AE8457899335}
 		{04AB1BFD-863D-47EB-89AE-2C03265A09F6} = {D43FEFE1-6CAC-4E45-844E-AE8457899335}
 		{A3146A3B-AC95-49D4-B961-F531154953D8} = {D5E8C621-18E8-4E88-8779-29E5C6035B9E}
+		{75E00DA7-FAAA-45D3-A79F-7FCF530728F4} = {D43FEFE1-6CAC-4E45-844E-AE8457899335}
+		{EF109509-E487-486F-B62F-7FA0E6E14582} = {D43FEFE1-6CAC-4E45-844E-AE8457899335}
+		{A578A208-6511-4910-9768-243C6568555D} = {D43FEFE1-6CAC-4E45-844E-AE8457899335}
+		{8119C6D9-FD7E-4A97-9CCA-AD91107587C0} = {D43FEFE1-6CAC-4E45-844E-AE8457899335}
 	EndGlobalSection
 EndGlobal
