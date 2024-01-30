@@ -23,22 +23,34 @@ public static class Configuration
 
             app.UseRouting()
                .UseHttpsRedirection()
+               .UseCors()
                .UseAuthorization()
                .UseEndpoints(static builder => builder.MapControllers());
         };
 
     private static Action<WebHostBuilderContext, IServiceCollection> ConfigureServices()
         => static (context, service)
-            => service.AddEndpointsApiExplorer()
-                      .AddSwaggerGen()
-                      .AddMySqlDbContext<FinancialContext>(context.Configuration,
-                                                           context.Configuration
-                                                                  .GetConnectionString("Api"),
-                                                           ServiceLifetime.Scoped,
-                                                           typeof(Program).Assembly, typeof(FinancialContext).Assembly)
-                      .AddHttpClient()
-                      .AddMediatR(static configuration
-                                      => configuration.RegisterServicesFromAssemblyContaining<Program>())
-                      .AddRetrieveEtfsServices()
-                      .AddControllers();
+            =>
+        {
+            service.AddEndpointsApiExplorer()
+                   .AddSwaggerGen()
+                   .AddMySqlDbContext<FinancialContext>(context.Configuration,
+                                                        context.Configuration
+                                                               .GetConnectionString("Api"),
+                                                        ServiceLifetime.Scoped,
+                                                        typeof(Program).Assembly, typeof(FinancialContext).Assembly)
+                   .AddHttpClient()
+                   .AddMediatR(static configuration
+                                   => configuration.RegisterServicesFromAssemblyContaining<Program>())
+                   .AddRetrieveEtfsServices()
+                   .AddControllers();
+
+            service.AddCors(static opts => opts.AddDefaultPolicy(static bld =>
+            {
+                bld
+                   .AllowAnyOrigin()
+                   .AllowAnyMethod()
+                   .AllowAnyHeader();
+            }));
+        };
 }

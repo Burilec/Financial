@@ -1,0 +1,45 @@
+@inject IFinancialApiClient FinancialApiClient
+@rendermode InteractiveWebAssembly
+
+@page "/products"
+@using Burile.Financial.Api.Client.Models
+@using Burile.Financial.Api.Client.Implementation
+
+<PageTitle>Products</PageTitle>
+
+
+@if (IsLoading)
+{
+    <p>Loading....</p>
+}
+else
+{
+    <MudDataGrid Class="table" Items="@Products">
+        <Columns>
+            <PropertyColumn Property="static product => product.ApiId" Sortable="true"/>
+            <PropertyColumn Property="static product => product.Symbol" Sortable="true"/>
+            <PropertyColumn Property="static product => product.Name" Sortable="true"/>
+            <PropertyColumn Property="static product => product.Currency" Sortable="true"/>
+            <PropertyColumn Property="static product => product.Exchange" Sortable="true"/>
+            <PropertyColumn Property="static product => product.Country" Sortable="true"/>
+            <PropertyColumn Property="static product => product.MicCode" Sortable="true"/>
+        </Columns>
+    </MudDataGrid>
+}
+
+@code {
+    private bool IsLoading { get; set; } = true;
+    private List<RetrieveProductsResponse>? Products { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var result = await FinancialApiClient.RetrieveProductsAsync();
+        if (result.IsSuccess)
+        {
+            Products = result.Value.Records.ToList();
+        }
+
+        IsLoading = false;
+    }
+
+}

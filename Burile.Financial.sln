@@ -1,27 +1,35 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34511.84
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{D43FEFE1-6CAC-4E45-844E-AE8457899335}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{D5E8C621-18E8-4E88-8779-29E5C6035B9E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Burile.Financial.TwelveData", "src\Burile.Financial.TwelveData\Burile.Financial.TwelveData.csproj", "{00548E7B-4D95-46ED-8ADB-376EAC1D6B3D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Burile.Financial.TwelveData", "src\Burile.Financial.TwelveData\Burile.Financial.TwelveData.csproj", "{00548E7B-4D95-46ED-8ADB-376EAC1D6B3D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Burile.Financial.Api", "src\Burile.Financial.Api\Burile.Financial.Api.csproj", "{04AB1BFD-863D-47EB-89AE-2C03265A09F6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Burile.Financial.Api", "src\Burile.Financial.Api\Burile.Financial.Api.csproj", "{04AB1BFD-863D-47EB-89AE-2C03265A09F6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Burile.Financial.Tests", "tests\Burile.Financial.Tests\Burile.Financial.Tests.csproj", "{A3146A3B-AC95-49D4-B961-F531154953D8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Burile.Financial.Tests", "tests\Burile.Financial.Tests\Burile.Financial.Tests.csproj", "{A3146A3B-AC95-49D4-B961-F531154953D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Burile.Financial.CronJobs", "src\Burile.Financial.CronJobs\Burile.Financial.CronJobs.csproj", "{75E00DA7-FAAA-45D3-A79F-7FCF530728F4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Burile.Financial.CronJobs", "src\Burile.Financial.CronJobs\Burile.Financial.CronJobs.csproj", "{75E00DA7-FAAA-45D3-A79F-7FCF530728F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Burile.Financial.Infrastructure", "src\Burile.Financial.Infrastructure\Burile.Financial.Infrastructure.csproj", "{EF109509-E487-486F-B62F-7FA0E6E14582}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Burile.Financial.Infrastructure", "src\Burile.Financial.Infrastructure\Burile.Financial.Infrastructure.csproj", "{EF109509-E487-486F-B62F-7FA0E6E14582}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{04279C0D-2088-4A09-8DE3-9B38A9EA5326}"
 	ProjectSection(SolutionItems) = preProject
 		docker-compose.yml = docker-compose.yml
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Burile.Financial.AlphaVantage", "src\Burile.Financial.AlphaVantage\Burile.Financial.AlphaVantage.csproj", "{A578A208-6511-4910-9768-243C6568555D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Burile.Financial.AlphaVantage", "src\Burile.Financial.AlphaVantage\Burile.Financial.AlphaVantage.csproj", "{A578A208-6511-4910-9768-243C6568555D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Burile.Financial.Domain", "src\Burile.Financial.Domain\Burile.Financial.Domain.csproj", "{8119C6D9-FD7E-4A97-9CCA-AD91107587C0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Burile.Financial.Domain", "src\Burile.Financial.Domain\Burile.Financial.Domain.csproj", "{8119C6D9-FD7E-4A97-9CCA-AD91107587C0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Burile.Financial.UI", "src\Burile.Financial.UI\Burile.Financial.UI.csproj", "{78D9BE35-5CA8-4D78-9F5C-0893315B9CFD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Burile.Financial.UI.Client", "src\Burile.Financial.UI.Client\Burile.Financial.UI.Client.csproj", "{1E858D03-CDDD-4B1C-8683-089073B0C3E6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Burile.Financial.Api.Client", "src\Burile.Financial.Api.Client\Burile.Financial.Api.Client.csproj", "{1C83DFE2-FD95-4A32-8CC1-58B805EE400D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +65,21 @@ Global
 		{8119C6D9-FD7E-4A97-9CCA-AD91107587C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8119C6D9-FD7E-4A97-9CCA-AD91107587C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8119C6D9-FD7E-4A97-9CCA-AD91107587C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78D9BE35-5CA8-4D78-9F5C-0893315B9CFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78D9BE35-5CA8-4D78-9F5C-0893315B9CFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78D9BE35-5CA8-4D78-9F5C-0893315B9CFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78D9BE35-5CA8-4D78-9F5C-0893315B9CFD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E858D03-CDDD-4B1C-8683-089073B0C3E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E858D03-CDDD-4B1C-8683-089073B0C3E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E858D03-CDDD-4B1C-8683-089073B0C3E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E858D03-CDDD-4B1C-8683-089073B0C3E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C83DFE2-FD95-4A32-8CC1-58B805EE400D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C83DFE2-FD95-4A32-8CC1-58B805EE400D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C83DFE2-FD95-4A32-8CC1-58B805EE400D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C83DFE2-FD95-4A32-8CC1-58B805EE400D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{00548E7B-4D95-46ED-8ADB-376EAC1D6B3D} = {D43FEFE1-6CAC-4E45-844E-AE8457899335}
@@ -66,5 +89,11 @@ Global
 		{EF109509-E487-486F-B62F-7FA0E6E14582} = {D43FEFE1-6CAC-4E45-844E-AE8457899335}
 		{A578A208-6511-4910-9768-243C6568555D} = {D43FEFE1-6CAC-4E45-844E-AE8457899335}
 		{8119C6D9-FD7E-4A97-9CCA-AD91107587C0} = {D43FEFE1-6CAC-4E45-844E-AE8457899335}
+		{78D9BE35-5CA8-4D78-9F5C-0893315B9CFD} = {D43FEFE1-6CAC-4E45-844E-AE8457899335}
+		{1E858D03-CDDD-4B1C-8683-089073B0C3E6} = {D43FEFE1-6CAC-4E45-844E-AE8457899335}
+		{1C83DFE2-FD95-4A32-8CC1-58B805EE400D} = {D43FEFE1-6CAC-4E45-844E-AE8457899335}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E3442489-EC88-4594-875B-1E65FCB9DC04}
 	EndGlobalSection
 EndGlobal
