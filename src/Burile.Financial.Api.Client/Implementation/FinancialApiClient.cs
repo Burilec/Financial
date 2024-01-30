@@ -8,9 +8,9 @@ public sealed class FinancialApiClient(IHttpClientFactory httpFactory)
     : HttpClientBase, IFinancialApiClient
 {
     public async Task<Result<PaginatedResult<RetrieveProductsResponse>>> RetrieveProductsAsync(
-        CancellationToken cancellationToken = default)
+        int pageNumber = 1, int pageSize = 10, CancellationToken cancellationToken = default)
     {
-        const string uri = $"/api/products";
+        var uri = $"/api/products?PageNumber={pageNumber}&PageSize={pageSize}";
 
         try
         {

@@ -40,8 +40,6 @@ namespace Burile.Financial.UI
                .AddInteractiveWebAssemblyRenderMode()
                .AddAdditionalAssemblies(typeof(Client._Imports).Assembly);
 
-            // app.UseCors(); // <-- and added this
-
             app.Run();
         }
     }
