@@ -9,7 +9,8 @@ public static class ServiceCollectionExtensions
     {
         ArgumentNullException.ThrowIfNull(services);
 
-        services.AddHttpClient(nameof(FinancialApiClient), _ => _.BaseAddress = new(baseUri?.Trim('/', ' ') + '/'));
+        services.AddHttpClient(nameof(FinancialApiClient),
+                               configureClient => configureClient.BaseAddress = new(baseUri?.Trim('/', ' ') + '/'));
 
         services.AddTransient<IFinancialApiClient, FinancialApiClient>();
 

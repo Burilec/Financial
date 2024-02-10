@@ -6,10 +6,10 @@ using Microsoft.EntityFrameworkCore;
 namespace Burile.Financial.Api.Features.RetrieveProducts;
 
 public sealed class RetrieveProductsQueryHandler(FinancialContext financialContext)
-    : IRequestHandler<RetrieveProductsQuery, PaginatedResult<RetrieveProductsResponse>>
+    : IRequestHandler<RetrieveProductsQuery, PaginatedResult<RetrieveProductResponse>>
 {
-    public async Task<PaginatedResult<RetrieveProductsResponse>> Handle(RetrieveProductsQuery request,
-                                                                        CancellationToken cancellationToken)
+    public async Task<PaginatedResult<RetrieveProductResponse>> Handle(RetrieveProductsQuery request,
+                                                                       CancellationToken cancellationToken)
     {
         var totalRecords = financialContext.Products.Count();
 
@@ -22,12 +22,12 @@ public sealed class RetrieveProductsQueryHandler(FinancialContext financialConte
                                              .AsNoTracking()
                                              .ToListAsync(cancellationToken);
 
-        var retrieveProductsResponses = RetrieveProductsResponse.FromProducts(products);
+        var retrieveProductsResponses = RetrieveProductResponse.FromProducts(products);
 
-        var paginatedResult = new PaginatedResult<RetrieveProductsResponse>(request.PagingOptions.PageNumber,
-                                                                            request.PagingOptions.PageSize,
-                                                                            totalRecords,
-                                                                            retrieveProductsResponses);
+        var paginatedResult = new PaginatedResult<RetrieveProductResponse>(request.PagingOptions.PageNumber,
+                                                                           request.PagingOptions.PageSize,
+                                                                           totalRecords,
+                                                                           retrieveProductsResponses);
 
         return paginatedResult;
     }

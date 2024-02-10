@@ -1,0 +1,20 @@
+@page "/products/{apiId}"
+
+<h3>Product Details</h3>
+
+<MudForm Model="@_form" @ref="@_mudForm" Validation="@(_productValidator.ValidateValue)" ValidationDelay="0">
+    <MudCard>
+        <MudCardContent>
+            <MudTextField T="string" Label="@nameof(_form.ApiId)" bind-Value="_form.ApiId" Disabled="true" InputType="InputType.Text"/>
+            <MudTextField Label="@nameof(_form.Symbol)" @bind-Value="_form.Symbol" Disabled="true" For="() => _form.Symbol" InputType="InputType.Text"/>
+            <MudTextField Label="@nameof(_form.Name)" @bind-Value="_form.Name" For="() => _form.Name" InputType="InputType.Text"/>
+            <MudTextField Label="@nameof(_form.Currency)" @bind-Value="_form.Currency" For="() => _form.Currency" InputType="InputType.Text"/>
+            <MudTextField Label="@nameof(_form.Exchange)" @bind-Value="_form.Exchange" For="() => _form.Exchange" InputType="InputType.Text"/>
+            <MudTextField Label="@nameof(_form.Country)" @bind-Value="_form.Country" For="() => _form.Country" InputType="InputType.Text"/>
+            <MudTextField Label="@nameof(_form.MicCode)" @bind-Value="_form.MicCode" For="() => _form.MicCode" InputType="InputType.Text"/>
+        </MudCardContent>
+        <MudCardActions>
+            <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto" OnClick="@(async () => await Submit())">Update</MudButton>
+        </MudCardActions>
+    </MudCard>
+</MudForm >

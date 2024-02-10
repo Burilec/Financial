@@ -1,6 +1,8 @@
-namespace Burile.Financial.Api.Client.Models;
+using Burile.Financial.Domain.Entities;
 
-public sealed class RetrieveProductsResponse(
+namespace Burile.Financial.Api.Features.RetrieveProductByApiId;
+
+public sealed class RetrieveProductByApiIdResponse(
     Guid apiId,
     string symbol,
     string? name,
@@ -16,4 +18,9 @@ public sealed class RetrieveProductsResponse(
     public string? Exchange { get; } = exchange;
     public string? Country { get; } = country;
     public string? MicCode { get; } = micCode;
+
+    internal static RetrieveProductByApiIdResponse FromProduct(Product product) =>
+        new(product.ApiId, product.Symbol, product.Name,
+            product.Currency, product.Exchange, product.Country,
+            product.MicCode);
 }

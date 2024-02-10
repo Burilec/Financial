@@ -6,7 +6,7 @@ namespace Burile.Financial.Api.Features.RetrieveProducts;
 
 [ApiController]
 [Route("api")]
-public class RetrieveProductsEndpoint : ControllerBase
+public sealed class RetrieveProductsEndpoint : ControllerBase
 {
     [HttpGet]
     [Route("products")]

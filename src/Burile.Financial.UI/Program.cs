@@ -1,3 +1,4 @@
+using Burile.Financial.Api.Client.DependencyInjection;
 using Burile.Financial.UI.Components;
 using MudBlazor.Services;
 
@@ -10,11 +11,12 @@ namespace Burile.Financial.UI
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-            builder.Services.AddRazorComponents()
+            builder.Services
+                   .AddFinancialApiClient("https://localhost:7052")
+                   .AddMudServices()
+                   .AddRazorComponents()
                    .AddInteractiveServerComponents()
                    .AddInteractiveWebAssemblyComponents();
-
-            builder.Services.AddMudServices();
 
             var app = builder.Build();
 

@@ -10,11 +10,11 @@ namespace Burile.Financial.UI.Client
         {
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
 
-            builder.Services.AddFinancialApiClient("https://localhost:7052");
+            builder.Services
+                   .AddFinancialApiClient("https://localhost:7052")
+                   .AddMudServices();
 
-            builder.Services.AddMudServices();
-
-            await builder.Build().RunAsync();
+            await builder.Build().RunAsync().ConfigureAwait(false);
         }
     }
 }

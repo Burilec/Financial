@@ -9,12 +9,8 @@
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter" Version="8.0.1"/>
         <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="8.0.1"/>
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.1">
-            <PrivateAssets>all</PrivateAssets>
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-        </PackageReference>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.1"/>
         <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.0"/>
-        <PackageReference Include="MudBlazor" Version="6.14.0"/>
     </ItemGroup>
 
     <ItemGroup>
@@ -22,11 +18,9 @@
         <ProjectReference Include="..\Burile.Financial.UI.Client\Burile.Financial.UI.Client.csproj"/>
     </ItemGroup>
 
-    <!--  <ItemGroup>-->
-    <!--    <_ContentIncludedByDefault Remove="Burile.Financial.UI\obj\Burile.Financial.UI.csproj.nuget.dgspec.json" />-->
-    <!--    <_ContentIncludedByDefault Remove="Burile.Financial.UI\obj\project.assets.json" />-->
-    <!--    <_ContentIncludedByDefault Remove="Burile.Financial.UI.Client\obj\Burile.Financial.UI.Client.csproj.nuget.dgspec.json" />-->
-    <!--    <_ContentIncludedByDefault Remove="Burile.Financial.UI.Client\obj\project.assets.json" />-->
-    <!--  </ItemGroup>-->
+    <ItemGroup>
+        <_ContentIncludedByDefault Remove="Burile.Financial.UI\obj\Burile.Financial.UI.csproj.nuget.dgspec.json"/>
+        <_ContentIncludedByDefault Remove="Burile.Financial.UI\obj\project.assets.json"/>
+    </ItemGroup>
 
 </Project>

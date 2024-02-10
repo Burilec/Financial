@@ -1,31 +1,33 @@
-@inject IFinancialApiClient FinancialApiClient
-@rendermode InteractiveWebAssembly
-
 @page "/products"
-@using Burile.Financial.Api.Client.Implementation
-@using Burile.Financial.Api.Client.Models
-
+@using Burile.Financial.UI.Client.Components
+@rendermode InteractiveWebAssembly
 
 <PageTitle>Products</PageTitle>
 
 <h1>Products</h1>
 
-<MudDataGrid Class="table" ServerData="GetData" @ref="_dataGrid" MultiSelection="false" T="RetrieveProductsResponse" Hideable="true"
-             Dense="true" Striped="true" Bordered="true" Hover="true">
+<MudDataGrid T="Product" Class="table" ServerData="GetData" @ref="_dataGrid"
+             Hideable="false"
+             Dense="false" Striped="false" Bordered="false" Hover="false">
     <ToolBarContent>
         <MudText Typo="Typo.h6">Products</MudText>
     </ToolBarContent>
     <Columns>
-        <SelectColumn T="RetrieveProductsResponse"></SelectColumn>
-        <PropertyColumn Property="static product => product.ApiId" col/>
+        <SelectColumn T="Product" Size="Size.Small"></SelectColumn>
+        <PropertyColumn Property="static product => product.ApiId" StickyLeft="true"/>
         <PropertyColumn Property="static product => product.Symbol"/>
         <PropertyColumn Property="static product => product.Name"/>
         <PropertyColumn Property="static product => product.Currency"/>
         <PropertyColumn Property="static product => product.Exchange"/>
         <PropertyColumn Property="static product => product.Country"/>
         <PropertyColumn Property="static product => product.MicCode"/>
+        <TemplateColumn StickyRight="true" T="Product">
+            <CellTemplate>
+                <MudIconButtonWithParameter ApiId="@context.Item.ApiId" OnAction="EditProduct"/>
+            </CellTemplate>
+        </TemplateColumn>
     </Columns>
     <PagerContent>
-        <MudDataGridPager T="RetrieveProductsResponse" PageSizeOptions="new[] { 10, 20, 50, 100 }"/>
+        <MudDataGridPager T="Product" PageSizeOptions="new[] { 10, 20, 50, 100 }"/>
     </PagerContent>
 </MudDataGrid>

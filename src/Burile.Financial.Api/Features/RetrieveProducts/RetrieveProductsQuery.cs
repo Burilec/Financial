@@ -4,7 +4,7 @@ using MediatR;
 namespace Burile.Financial.Api.Features.RetrieveProducts;
 
 public sealed class RetrieveProductsQuery(PagingOptions pagingOptions)
-    : IRequest<PaginatedResult<RetrieveProductsResponse>>
+    : IRequest<PaginatedResult<RetrieveProductResponse>>
 {
     public PagingOptions PagingOptions { get; } = pagingOptions;
 }

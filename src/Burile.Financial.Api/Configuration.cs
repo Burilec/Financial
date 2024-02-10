@@ -1,6 +1,8 @@
 using Burile.Financial.Api.Features.RetrieveEtfs;
 using Burile.Financial.Infrastructure.Data.Contexts;
 using Burile.Financial.Infrastructure.Extensions;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 
 namespace Burile.Financial.Api;
 
@@ -30,27 +32,24 @@ public static class Configuration
 
     private static Action<WebHostBuilderContext, IServiceCollection> ConfigureServices()
         => static (context, service)
-            =>
-        {
-            service.AddEndpointsApiExplorer()
-                   .AddSwaggerGen()
-                   .AddMySqlDbContext<FinancialContext>(context.Configuration,
-                                                        context.Configuration
-                                                               .GetConnectionString("Api"),
-                                                        ServiceLifetime.Scoped,
-                                                        typeof(Program).Assembly, typeof(FinancialContext).Assembly)
-                   .AddHttpClient()
-                   .AddMediatR(static configuration
-                                   => configuration.RegisterServicesFromAssemblyContaining<Program>())
-                   .AddRetrieveEtfsServices()
-                   .AddControllers();
-
-            service.AddCors(static opts => opts.AddDefaultPolicy(static bld =>
-            {
-                bld
-                   .AllowAnyOrigin()
-                   .AllowAnyMethod()
-                   .AllowAnyHeader();
-            }));
-        };
+            => service.AddEndpointsApiExplorer()
+                      .AddSwaggerGen()
+                      .AddMySqlDbContext<FinancialContext>(context.Configuration,
+                                                           context.Configuration.GetConnectionString("Api"),
+                                                           ServiceLifetime.Scoped,
+                                                           typeof(Program).Assembly, typeof(FinancialContext).Assembly)
+                      .AddHttpClient()
+                      .AddMediatR(static configuration =>
+                                      configuration.RegisterServicesFromAssemblyContaining<Program>())
+                      .AddRetrieveEtfsServices()
+                      .AddCors(static options => options.AddDefaultPolicy(static builder =>
+                       {
+                           builder.AllowAnyOrigin()
+                                  .AllowAnyMethod()
+                                  .AllowAnyHeader();
+                       }))
+                      .AddFluentValidationAutoValidation()
+                      .AddFluentValidationClientsideAdapters()
+                      .AddValidatorsFromAssembly(typeof(Program).Assembly)
+                      .AddControllers();
 }

@@ -36,17 +36,19 @@ public sealed class Product(string symbol) : AggregateRoot<long, Guid>(Guid.NewG
            $"{nameof(Country)}: {Country}, " +
            $"{nameof(MicCode)}: {MicCode}";
 
-    public void Update(string? name, string? currency, string? exchange, string? country, string? micCode)
+    public Product Update(string? name, string? currency, string? exchange, string? country, string? micCode)
     {
-        if (name != null)
+        if (!string.IsNullOrWhiteSpace(name))
             SetName(name);
-        if (currency != null)
+        if (!string.IsNullOrWhiteSpace(currency))
             SetCurrency(currency);
-        if (exchange != null)
+        if (!string.IsNullOrWhiteSpace(exchange))
             SetExchange(exchange);
-        if (country != null)
+        if (!string.IsNullOrWhiteSpace(country))
             SetCountry(country);
-        if (micCode != null)
+        if (!string.IsNullOrWhiteSpace(micCode))
             SetMicCode(micCode);
+
+        return this;
     }
 }

@@ -14,38 +14,30 @@ public sealed class UpdateInformationEtfsCommandHandler(
 {
     public async Task Handle(UpdateInformationEtfsCommand request, CancellationToken cancellationToken)
     {
-        try
+        var etfs = await twelveDataClient.GetEtfsAsync(cancellationToken).ConfigureAwait(false);
+
+        //todo:Check null
+        var updateInformationEtfsDto = JsonConvert.DeserializeObject<UpdateInformationEtfsDto>(etfs);
+
+        var products = await financialContext.Products
+                                             .Where(product => updateInformationEtfsDto.Data
+                                                       .Select(static dto => dto.Symbol)
+                                                       .Contains(product.Symbol))
+                                             .ToListAsync(cancellationToken)
+                                             .ConfigureAwait(false);
+
+        foreach (var dto in updateInformationEtfsDto.Data)
         {
-            var etfs = await twelveDataClient.GetEtfsAsync(cancellationToken).ConfigureAwait(false);
+            if (dto.Symbol == null)
+                continue;
 
-            //todo:Check null
-            var updateInformationEtfsDto = JsonConvert.DeserializeObject<UpdateInformationEtfsDto>(etfs);
+            var product = products.FirstOrDefault(_ => _.Symbol == dto.Symbol) ?? new Product(dto.Symbol);
 
-            var products = await financialContext.Products
-                                                 .Where(product => updateInformationEtfsDto.Data
-                                                           .Select(static dto => dto.Symbol)
-                                                           .Contains(product.Symbol))
-                                                 .ToListAsync(cancellationToken)
-                                                 .ConfigureAwait(false);
+            product.Update(dto.Name, dto.Currency, dto.Exchange, dto.Country, dto.MicCode);
 
-            foreach (var dto in updateInformationEtfsDto.Data)
-            {
-                if (dto.Symbol == null)
-                    continue;
-
-                var product = products.FirstOrDefault(_ => _.Symbol == dto.Symbol) ?? new Product(dto.Symbol);
-
-                product.Update(dto.Name, dto.Currency, dto.Exchange, dto.Country, dto.MicCode);
-
-                financialContext.Products.Update(product);
-            }
-
-            await financialContext.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
+            financialContext.Products.Update(product);
         }
-        catch (Exception e)
-        {
-            Console.WriteLine(e);
-            throw;
-        }
+
+        await financialContext.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
     }
 }

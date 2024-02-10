@@ -54,7 +54,6 @@ public abstract class HttpClientBase
         return stringContent;
     }
 
-
     private string ToJson<TRequest>(TRequest request)
         => JsonSerializer.Serialize(request, _options);
 
