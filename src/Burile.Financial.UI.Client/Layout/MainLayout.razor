@@ -1,6 +1,15 @@
 ﻿@inherits LayoutComponentBase
 
 <MudThemeProvider IsDarkMode="true"/>
+<MudDialogProvider
+    FullWidth="true"
+    MaxWidth="MaxWidth.ExtraSmall"
+    CloseButton="true"
+    DisableBackdropClick="true"
+    NoHeader="true"
+    Position="DialogPosition.Center"
+    CloseOnEscapeKey="true"/>
+<MudSnackbarProvider/>
 
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet"/>
 <link href="_content/MudBlazor/MudBlazor.min.css" rel="stylesheet"/>

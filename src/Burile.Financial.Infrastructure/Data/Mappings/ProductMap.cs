@@ -44,6 +44,9 @@ public sealed class ProductMap : IEntityTypeConfiguration<Product>
         builder.Property(static x => x.MicCode)
                .IsRequired(false);
 
+        builder.Property(static x => x.IsRemoved)
+               .IsRequired();
+
         // Table & Column Mappings
         builder.ToTable($"{nameof(Product)}s");
 

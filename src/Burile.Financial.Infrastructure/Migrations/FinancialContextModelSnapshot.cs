@@ -19,6 +19,39 @@ namespace Burile.Financial.Infrastructure.Migrations
                 .HasAnnotation("ProductVersion", "8.0.1")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
+            modelBuilder.Entity("Burile.Financial.Domain.Entities.Portfolio", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    b.Property<Guid>("ApiId")
+                        .HasColumnType("char(36)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<bool>("IsRemoved")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(256)
+                        .HasColumnType("varchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApiId");
+
+                    b.HasIndex("Id");
+
+                    b.HasIndex("Name");
+
+                    b.ToTable("Portfolios", (string)null);
+                });
+
             modelBuilder.Entity("Burile.Financial.Domain.Entities.Product", b =>
                 {
                     b.Property<long>("Id")
@@ -36,12 +69,15 @@ namespace Burile.Financial.Infrastructure.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Currency")
-                        .HasMaxLength(36)
-                        .HasColumnType("varchar(36)");
+                        .HasMaxLength(3)
+                        .HasColumnType("varchar(3)");
 
                     b.Property<string>("Exchange")
                         .HasMaxLength(36)
                         .HasColumnType("varchar(36)");
+
+                    b.Property<bool>("IsRemoved")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("MicCode")
                         .HasMaxLength(36)
@@ -51,8 +87,8 @@ namespace Burile.Financial.Infrastructure.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Name")
-                        .HasMaxLength(1024)
-                        .HasColumnType("varchar(1024)");
+                        .HasMaxLength(256)
+                        .HasColumnType("varchar(256)");
 
                     b.Property<string>("Symbol")
                         .IsRequired()

@@ -5,7 +5,7 @@ using MudBlazor;
 namespace Burile.Financial.UI.Client.Pages.Products;
 
 // ReSharper disable once ClassNeverInstantiated.Global
-public partial class Index
+public sealed partial class Index
 {
     private MudDataGrid<Product>? _dataGrid;
 
@@ -14,21 +14,43 @@ public partial class Index
 
     private async Task<GridData<Product>> GetData(GridState<Product> state)
     {
-        var result = await FinancialApiClient.RetrieveProductsAsync(state.Page + 1, state.PageSize)
+        // if (state.FilterDefinitions is { Count: > 0 })
+        // {
+        //     foreach (var filter in state.FilterDefinitions)
+        //     {
+        //         var expression = FilterExpressionGenerator.GenerateExpression<Product>
+        //             (filter, new FilterOptions() { FilterCaseSensitivity = DataGridFilterCaseSensitivity.Default });
+        //         // query = query.Where(expression);
+        //     }
+        // }
+        //
+        // if (state.SortDefinitions is { Count: > 0 })
+        // {
+        //     foreach (var sort in state.SortDefinitions)
+        //     {
+        //         // query = query.OrderBy($"{sort.SortBy} {(sort.Descending ? "descending" : "ascending")}");
+        //     }
+        // }
+        // else
+        // {
+        //     // query = query.OrderBy(w => w.Date);
+        // }
+
+        var result = await FinancialApiClient.RetrieveProductsAsync(state.Page, state.PageSize)
                                              .ConfigureAwait(false);
 
-        var productResponses = result.Value.Records;
+        var productsResponse = result.Value.Records;
 
         var gridData = new GridData<Product>
         {
-            Items = productResponses.Select(static response => new Product(response)),
+            Items = productsResponse.Select(static response => new Product(response)),
             TotalItems = result.Value.TotalRecords
         };
 
         return gridData;
     }
 
-    private void EditProduct(Guid apiId)
+    private void Edit(Guid apiId)
     {
         NavigationManager.NavigateTo($"products/{apiId}");
     }

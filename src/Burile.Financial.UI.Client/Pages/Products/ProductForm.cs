@@ -2,7 +2,7 @@ namespace Burile.Financial.UI.Client.Pages.Products;
 
 public sealed class ProductForm
 {
-    public string? ApiId { get; set; }
+    public Guid ApiId { get; set; }
     public string? Symbol { get; set; }
     public string? Name { get; set; }
     public string? Currency { get; set; }

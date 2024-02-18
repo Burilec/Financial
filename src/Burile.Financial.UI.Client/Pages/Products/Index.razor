@@ -1,28 +1,28 @@
 @page "/products"
 @using Burile.Financial.UI.Client.Components
-@rendermode InteractiveWebAssembly
 
 <PageTitle>Products</PageTitle>
 
 <h1>Products</h1>
 
 <MudDataGrid T="Product" Class="table" ServerData="GetData" @ref="_dataGrid"
-             Hideable="false"
-             Dense="false" Striped="false" Bordered="false" Hover="false">
+             Hideable="false" ShowColumnOptions="true" ShowFilterIcons="true" ShowMenuIcon="true"
+             Outlined="false" ColumnResizeMode="ResizeMode.Container"
+             Dense="false" Striped="true" Bordered="true" Hover="false" ReadOnly="true">
     <ToolBarContent>
         <MudText Typo="Typo.h6">Products</MudText>
     </ToolBarContent>
     <Columns>
-        <PropertyColumn Property="static product => product.ApiId" StickyLeft="true"/>
-        <PropertyColumn Property="static product => product.Symbol"/>
-        <PropertyColumn Property="static product => product.Name"/>
-        <PropertyColumn Property="static product => product.Currency"/>
-        <PropertyColumn Property="static product => product.Exchange"/>
-        <PropertyColumn Property="static product => product.Country"/>
-        <PropertyColumn Property="static product => product.MicCode"/>
-        <TemplateColumn StickyRight="true" T="Product">
+        <PropertyColumn Property="static product => product.ApiId" StickyLeft="true" Filterable="true" Sortable="true" ShowFilterIcon="true"/>
+        <PropertyColumn Property="static product => product.Symbol" Filterable="true" Sortable="true" ShowFilterIcon="true"/>
+        <PropertyColumn Property="static product => product.Name" Filterable="true" Sortable="true" ShowFilterIcon="true"/>
+        <PropertyColumn Property="static product => product.Currency" Filterable="true" Sortable="true" ShowFilterIcon="true"/>
+        <PropertyColumn Property="static product => product.Exchange" Filterable="true" Sortable="true" ShowFilterIcon="true"/>
+        <PropertyColumn Property="static product => product.Country" Filterable="true" Sortable="true" ShowFilterIcon="true"/>
+        <PropertyColumn Property="static product => product.MicCode" Filterable="true" Sortable="true" ShowFilterIcon="true"/>
+        <TemplateColumn StickyRight="true" T="Product" Sortable="false" Filterable="false" ShowFilterIcon="false">
             <CellTemplate>
-                <MudIconButtonWithParameter ApiId="@context.Item.ApiId" OnAction="EditProduct"/>
+                <MudIconButtonWithParameter Size="@Size.Small" Icon="@Icons.Material.Outlined.Edit" ApiId="@context.Item.ApiId" OnAction="Edit"/>
             </CellTemplate>
         </TemplateColumn>
     </Columns>

@@ -1,0 +1,33 @@
+@page "/portfolios"
+@using Burile.Financial.UI.Client.Components.Portfolios
+@using Burile.Financial.UI.Client.Components
+
+<PageTitle>Portfolios</PageTitle>
+
+<h3>Portfolios</h3>
+
+<MudExpansionPanels>
+    <MudExpansionPanel Text="Create Portfolio" MaxHeight="150">
+        <MudFormPortfolio IsCreating="true" OnSubmit="OnSubmit"/>
+    </MudExpansionPanel>
+</MudExpansionPanels>
+
+<MudDataGrid T="Portfolio" Class="table" ServerData="GetData" @ref="_dataGrid"
+             Hideable="false"
+             Dense="false" Striped="false" Bordered="false" Hover="false">
+    <ToolBarContent>
+        <MudText Typo="Typo.h6">Products</MudText>
+    </ToolBarContent>
+    <Columns>
+        <PropertyColumn Property="static product => product.ApiId" StickyLeft="true"/>
+        <PropertyColumn Property="static product => product.Name"/>
+        <TemplateColumn StickyRight="true" T="Portfolio" ShowFilterIcon="false" Filterable="false">
+            <CellTemplate>
+                <MudIconButtonWithParameter Size="@Size.Small" Icon="@Icons.Material.Outlined.Edit" ApiId="@context.Item.ApiId" OnAction="Edit"/>
+            </CellTemplate>
+        </TemplateColumn>
+    </Columns>
+    <PagerContent>
+        <MudDataGridPager T="Portfolio" PageSizeOptions="new[] { 10, 20, 50, 100 }"/>
+    </PagerContent>
+</MudDataGrid>

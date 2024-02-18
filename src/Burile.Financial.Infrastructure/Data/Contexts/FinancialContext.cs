@@ -7,10 +7,12 @@ namespace Burile.Financial.Infrastructure.Data.Contexts;
 
 public sealed class FinancialContext : DbContext
 {
-    public FinancialContext(DbContextOptions<FinancialContext> options) : base(options)
+    public FinancialContext(DbContextOptions<FinancialContext> options)
+        : base(options)
         => ChangeTracker.LazyLoadingEnabled = false;
 
     public DbSet<Product> Products { get; set; } = null!;
+    public DbSet<Portfolio> Portfolios { get; set; } = null!;
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
         => modelBuilder.ApplyConfigurationsFromAssembly(typeof(FinancialContext).Assembly);

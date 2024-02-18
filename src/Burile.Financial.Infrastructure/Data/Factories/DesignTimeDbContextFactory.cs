@@ -19,6 +19,6 @@ public sealed class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<Fin
                                 ServerVersion.AutoDetect(connectionString),
                                 static x => x.MigrationsAssembly(typeof(FinancialContext).Assembly.GetName().Name));
 
-        return new FinancialContext(optionsBuilder.Options);
+        return new(optionsBuilder.Options);
     }
 }

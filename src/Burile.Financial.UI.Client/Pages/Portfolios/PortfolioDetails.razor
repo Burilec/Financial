@@ -1,0 +1,8 @@
+@page "/portfolios/{apiId}"
+@using Burile.Financial.UI.Client.Components.Portfolios
+
+<h3>Portfolio Details</h3>
+
+<MudIconButton Icon="@Icons.Material.Outlined.ArrowBack" OnClick="ReturnPage"></MudIconButton>
+
+<MudFormPortfolio ApiId="@ApiId" IsCreating="false" OnSubmit="OnSubmit"/>

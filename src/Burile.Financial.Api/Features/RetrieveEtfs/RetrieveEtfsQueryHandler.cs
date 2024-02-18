@@ -1,5 +1,4 @@
 using Burile.Financial.TwelveData.Clients.Interfaces;
-using MediatR;
 
 namespace Burile.Financial.Api.Features.RetrieveEtfs;
 

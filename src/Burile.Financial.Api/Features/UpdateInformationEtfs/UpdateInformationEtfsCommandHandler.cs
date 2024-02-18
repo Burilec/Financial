@@ -1,7 +1,6 @@
 using Burile.Financial.Domain.Entities;
 using Burile.Financial.Infrastructure.Data.Contexts;
 using Burile.Financial.TwelveData.Clients.Interfaces;
-using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 
@@ -14,29 +13,30 @@ public sealed class UpdateInformationEtfsCommandHandler(
 {
     public async Task Handle(UpdateInformationEtfsCommand request, CancellationToken cancellationToken)
     {
-        var etfs = await twelveDataClient.GetEtfsAsync(cancellationToken).ConfigureAwait(false);
+        var etfsRaw = await twelveDataClient.GetEtfsAsync(cancellationToken).ConfigureAwait(false);
 
-        //todo:Check null
-        var updateInformationEtfsDto = JsonConvert.DeserializeObject<UpdateInformationEtfsDto>(etfs);
+        var etfs = JsonConvert.DeserializeObject<UpdateInformationEtfsDto>(etfsRaw);
+
+        if (etfs?.Data == null)
+        {
+            //todo:Better check
+            return;
+        }
 
         var products = await financialContext.Products
-                                             .Where(product => updateInformationEtfsDto.Data
-                                                       .Select(static dto => dto.Symbol)
-                                                       .Contains(product.Symbol))
+                                             .Where(product => etfs.Data
+                                                                   .Select(static dto => dto.Symbol)
+                                                                   .Contains(product.Symbol))
                                              .ToListAsync(cancellationToken)
                                              .ConfigureAwait(false);
 
-        foreach (var dto in updateInformationEtfsDto.Data)
-        {
-            if (dto.Symbol == null)
-                continue;
+        var updates = etfs.Data
+                          .Where(static dto => dto.Symbol != null)
+                          .Select(dto => (products.FirstOrDefault(_ => _.Symbol == dto.Symbol)
+                                       ?? new Product(dto.Symbol!))
+                                     .Update(dto.Name, dto.Currency, dto.Exchange, dto.Country, dto.MicCode));
 
-            var product = products.FirstOrDefault(_ => _.Symbol == dto.Symbol) ?? new Product(dto.Symbol);
-
-            product.Update(dto.Name, dto.Currency, dto.Exchange, dto.Country, dto.MicCode);
-
-            financialContext.Products.Update(product);
-        }
+        financialContext.Products.UpdateRange(updates);
 
         await financialContext.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
     }
