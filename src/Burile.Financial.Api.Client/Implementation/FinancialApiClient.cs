@@ -8,13 +8,15 @@ public sealed class FinancialApiClient(IHttpClientFactory httpFactory)
     : HttpClientBase, IFinancialApiClient
 {
     public async Task<Result<PaginatedResult<ProductResponse>>> RetrieveProductsAsync(
-        int pageNumber = 1, int pageSize = 10, CancellationToken cancellationToken = default)
+        int pageNumber, int pageSize, RetrieveProductRequest request,
+        CancellationToken cancellationToken = default)
     {
         var uri = $"/api/products?PageNumber={pageNumber}&PageSize={pageSize}";
 
         try
         {
-            return await GetAsync<PaginatedResult<ProductResponse>>(uri, cancellationToken)
+            return await PostAsync<RetrieveProductRequest, PaginatedResult<ProductResponse>>(uri, request,
+                    cancellationToken)
                .ConfigureAwait(false);
         }
         catch (Exception exception)

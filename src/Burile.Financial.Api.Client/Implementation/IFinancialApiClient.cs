@@ -6,7 +6,7 @@ namespace Burile.Financial.Api.Client.Implementation;
 public interface IFinancialApiClient
 {
     Task<Result<PaginatedResult<ProductResponse>>> RetrieveProductsAsync(
-        int pageNumber = 1, int pageSize = 10, CancellationToken cancellationToken = default);
+        int pageNumber, int pageSize, RetrieveProductRequest request, CancellationToken cancellationToken = default);
 
     Task<Result<PaginatedResult<PortfolioResponse>>> RetrievePortfoliosAsync(
         int pageNumber = 1, int pageSize = 10, CancellationToken cancellationToken = default);

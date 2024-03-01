@@ -6,10 +6,10 @@ namespace Burile.Financial.Api.Features.UpdateInformationEtfs;
 [Route("api")]
 public sealed class UpdateInformationEtfsEndpoint
 {
-    [HttpGet]
+    [HttpPost]
     [Route("update-information-etfs")]
-    public async Task<IActionResult> GetAsync([FromServices] IMediator mediator,
-                                              CancellationToken cancellationToken = default)
+    public async Task<IActionResult> PostAsync([FromServices] IMediator mediator,
+                                               CancellationToken cancellationToken = default)
     {
         var query = new UpdateInformationEtfsCommand();
 

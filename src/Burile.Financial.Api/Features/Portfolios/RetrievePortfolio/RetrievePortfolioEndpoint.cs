@@ -7,10 +7,10 @@ namespace Burile.Financial.Api.Features.Portfolios.RetrievePortfolio;
 public class RetrievePortfolioEndpoint : ControllerBase
 {
     [HttpGet]
-    [Route("portfolios/{apiId:guid}", Name = nameof(GetPortfolioAsync))]
-    public async Task<IActionResult> GetPortfolioAsync([FromServices] IMediator mediator,
-                                                       [FromRoute] Guid apiId,
-                                                       CancellationToken cancellationToken = default)
+    [Route("portfolios/{apiId:guid}")]
+    public async Task<IActionResult> GetAsync([FromServices] IMediator mediator,
+                                              [FromRoute] Guid apiId,
+                                              CancellationToken cancellationToken = default)
     {
         var query = new RetrievePortfolioQuery(apiId);
 

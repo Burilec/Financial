@@ -7,16 +7,24 @@ namespace Burile.Financial.Api.Features.Products.RetrieveProducts;
 [Route("api")]
 public sealed class RetrieveProductsEndpoint : ControllerBase
 {
-    [HttpGet]
+    [HttpPost]
     [Route("products")]
-    public async Task<IActionResult> GetAsync([FromServices] IMediator mediator,
-                                              [FromQuery] PagingOptions pagingOptions,
-                                              CancellationToken cancellationToken = default)
+    public async Task<IActionResult> PostAsync([FromServices] IMediator mediator,
+                                               [FromQuery] PagingOptions pagingOptions,
+                                               [FromBody] RetrieveProductRequest retrieveProductRequest,
+                                               CancellationToken cancellationToken = default)
     {
-        var query = new RetrieveProductsQuery(pagingOptions);
+        try
+        {
+            var query = new RetrieveProductsQuery(pagingOptions, retrieveProductRequest);
 
-        var response = await mediator.Send(query, cancellationToken).ConfigureAwait(false);
+            var response = await mediator.Send(query, cancellationToken).ConfigureAwait(false);
 
-        return new OkObjectResult(response);
+            return new OkObjectResult(response);
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e);
+        }
     }
 }

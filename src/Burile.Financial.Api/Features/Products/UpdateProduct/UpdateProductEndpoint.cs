@@ -10,10 +10,10 @@ public sealed class UpdateProductEndpoint : ControllerBase
     [Route("products/{apiId:guid}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status409Conflict)]
-    public async Task<IActionResult> GetAsync([FromServices] IMediator mediator,
-                                              [FromRoute] Guid apiId,
-                                              [FromBody] UpdateProductRequest updateProductRequest,
-                                              CancellationToken cancellationToken = default)
+    public async Task<IActionResult> UpdateAsync([FromServices] IMediator mediator,
+                                                 [FromRoute] Guid apiId,
+                                                 [FromBody] UpdateProductRequest updateProductRequest,
+                                                 CancellationToken cancellationToken = default)
     {
         var command = new UpdateProductCommand(apiId, updateProductRequest);
 

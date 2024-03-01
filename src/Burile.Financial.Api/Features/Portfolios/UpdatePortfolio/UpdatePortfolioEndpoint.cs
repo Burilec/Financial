@@ -10,10 +10,10 @@ public sealed class UpdatePortfolioEndpoint : ControllerBase
     [Route("portfolios/{apiId:guid}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status409Conflict)]
-    public async Task<IActionResult> GetAsync([FromServices] IMediator mediator,
-                                              [FromRoute] Guid apiId,
-                                              [FromBody] UpdatePortfolioRequest request,
-                                              CancellationToken cancellationToken = default)
+    public async Task<IActionResult> UpdateAsync([FromServices] IMediator mediator,
+                                                 [FromRoute] Guid apiId,
+                                                 [FromBody] UpdatePortfolioRequest request,
+                                                 CancellationToken cancellationToken = default)
     {
         var command = new UpdatePortfolioCommand(apiId, request);
 
