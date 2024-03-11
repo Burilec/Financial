@@ -11,7 +11,7 @@ public sealed class RetrieveProductsEndpoint : ControllerBase
     [Route("products")]
     public async Task<IActionResult> PostAsync([FromServices] IMediator mediator,
                                                [FromQuery] PagingOptions pagingOptions,
-                                               [FromBody] RetrieveProductRequest retrieveProductRequest,
+                                               [FromBody] RetrieveProductRequest? retrieveProductRequest,
                                                CancellationToken cancellationToken = default)
     {
         try

@@ -1,4 +1,4 @@
-namespace Burile.Financial.Api.Features.Products.RetrieveProducts.Filters.Types;
+namespace Burile.Financial.Infrastructure.Filters.Types;
 
 public enum SearchStringType
 {

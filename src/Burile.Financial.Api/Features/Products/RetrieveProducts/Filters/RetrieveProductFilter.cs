@@ -1,3 +1,5 @@
+using Burile.Financial.Infrastructure.Filters;
+
 namespace Burile.Financial.Api.Features.Products.RetrieveProducts.Filters;
 
 public sealed class RetrieveProductFilter(
