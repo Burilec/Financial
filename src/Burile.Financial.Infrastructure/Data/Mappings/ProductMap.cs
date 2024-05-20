@@ -47,6 +47,10 @@ public sealed class ProductMap : IEntityTypeConfiguration<Product>
         builder.Property(static x => x.IsRemoved)
                .IsRequired();
 
+        builder.Property(static x => x.Track)
+               .HasDefaultValue(false)
+               .IsRequired();
+
         // Table & Column Mappings
         builder.ToTable($"{nameof(Product)}s");
 

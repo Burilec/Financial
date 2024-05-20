@@ -14,8 +14,10 @@ public sealed partial class Index
     private MudDataGrid<Product>? _dataGrid;
     private IEnumerable<Product>? _internalProducts;
     private ICollection<IFilterDefinition<Product>>? _previousFilterDefinitions;
+
     private int _previousPage = 0;
-    private ICollection<SortDefinition<Product>>? _previousSortDefinitions;
+
+    // private ICollection<SortDefinition<Product>>? _previousSortDefinitions;
     private int _previousTotalItems = 0;
 
     [Inject] public IFinancialApiClient FinancialApiClient { get; set; } = null!;
@@ -23,29 +25,29 @@ public sealed partial class Index
 
     private async Task<GridData<Product>> GetData(GridState<Product> state)
     {
-        if (!state.FilterDefinitions.Equal(_previousFilterDefinitions))
-        {
-            _previousFilterDefinitions = state.FilterDefinitions.Clone().ToList();
-            state.Page = 0;
-        }
-        else
-        {
-            if (_previousPage != state.Page)
-            {
-                _previousPage = state.Page;
-            }
-            else
-            {
-                if (_internalProducts is not null)
-                {
-                    return new()
-                    {
-                        Items = _internalProducts,
-                        TotalItems = _previousTotalItems
-                    };
-                }
-            }
-        }
+        // if (!state.FilterDefinitions.Equal(_previousFilterDefinitions))
+        // {
+        //     _previousFilterDefinitions = state.FilterDefinitions.Clone().ToList();
+        //     state.Page = 0;
+        // }
+        // else
+        // {
+        //     if (_previousPage != state.Page)
+        //     {
+        //         _previousPage = state.Page;
+        //     }
+        //     else
+        //     {
+        //         if (_internalProducts is not null)
+        //         {
+        //             return new()
+        //             {
+        //                 Items = _internalProducts,
+        //                 TotalItems = _previousTotalItems
+        //             };
+        //         }
+        //     }
+        // }
 
         var result = await FinancialApiClient.RetrieveProductsAsync(state.Page, state.PageSize, GetRequest(state))
                                              .ConfigureAwait(false);

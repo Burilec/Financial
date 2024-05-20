@@ -12,6 +12,7 @@ public sealed class Product(string symbol) : AggregateRoot<long, Guid>(Guid.NewG
     public string? Country { get; private set; }
     public string? MicCode { get; private set; }
     public bool IsRemoved { get; private set; }
+    public bool Track { get; private set; }
 
     public void SetName(string name)
         => Name = name;

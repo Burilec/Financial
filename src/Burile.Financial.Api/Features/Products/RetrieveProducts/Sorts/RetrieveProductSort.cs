@@ -1,3 +1,5 @@
+using Burile.Financial.Infrastructure.Sorts;
+
 namespace Burile.Financial.Api.Features.Products.RetrieveProducts.Sorts;
 
 public sealed class RetrieveProductSort(
