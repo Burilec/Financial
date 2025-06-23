@@ -36,13 +36,4 @@ public static class InfrastructureServiceCollectionExtensions
 
         return services;
     }
-
-    // public static IServiceCollection AddUnitOfWork<TDbContext>(this IServiceCollection services,
-    //                                                            ServiceLifetime serviceLifetime = ServiceLifetime.Scoped)
-    //     where TDbContext : DbContext
-    // {
-    //     services.TryAdd(new ServiceDescriptor(typeof(IUnitOfWork), typeof(UnitOfWork<TDbContext>), serviceLifetime));
-    //
-    //     return services;
-    // }
 }

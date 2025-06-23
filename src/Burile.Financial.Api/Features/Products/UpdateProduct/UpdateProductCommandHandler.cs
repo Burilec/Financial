@@ -7,20 +7,22 @@ namespace Burile.Financial.Api.Features.Products.UpdateProduct;
 public sealed class UpdateProductCommandHandler(FinancialContext financialContext)
     : IRequestHandler<UpdateProductCommand, Result>
 {
+    private readonly FinancialContext _financialContext = financialContext;
+
     public async Task<Result> Handle(UpdateProductCommand request, CancellationToken cancellationToken)
     {
-        var product = await financialContext.Products
-                                            .FirstOrDefaultAsync(p => p.ApiId == request.ApiId, cancellationToken)
-                                            .ConfigureAwait(false);
+        var product = await _financialContext.Products
+                                             .FirstOrDefaultAsync(p => p.ApiId == request.ApiId, cancellationToken)
+                                             .ConfigureAwait(false);
 
         if (product == null)
         {
             return Result.Fail("Product not found");
         }
 
-        financialContext.Products.Update(product.Update(request));
+        _financialContext.Products.Update(product.Update(request));
 
-        await financialContext.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
+        await _financialContext.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
 
         return Result.Ok();
     }

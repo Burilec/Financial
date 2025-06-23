@@ -5,7 +5,6 @@ namespace Burile.Financial.Domain.Entities;
 public sealed class Product(string symbol) : AggregateRoot<long, Guid>(Guid.NewGuid())
 {
     public string Symbol { get; private init; } = symbol;
-
     public string? Name { get; private set; }
     public string? Currency { get; private set; }
     public string? Exchange { get; private set; }
@@ -14,20 +13,24 @@ public sealed class Product(string symbol) : AggregateRoot<long, Guid>(Guid.NewG
     public bool IsRemoved { get; private set; }
     public bool Track { get; private set; }
 
-    public void SetName(string name)
-        => Name = name;
+    public ICollection<MonthlyQuote> MonthlyQuotes { get; private set; }
+    public DateTime LastUpdateMonthlyQuotes { get; private set; }
 
-    public void SetCurrency(string currency)
-        => Currency = currency;
+    public Product Update(string? name, string? currency, string? exchange, string? country, string? micCode)
+    {
+        if (!string.IsNullOrWhiteSpace(name))
+            Name = name;
+        if (!string.IsNullOrWhiteSpace(currency))
+            Currency = currency;
+        if (!string.IsNullOrWhiteSpace(exchange))
+            Exchange = exchange;
+        if (!string.IsNullOrWhiteSpace(country))
+            Country = country;
+        if (!string.IsNullOrWhiteSpace(micCode))
+            MicCode = micCode;
 
-    public void SetExchange(string exchange)
-        => Exchange = exchange;
-
-    public void SetCountry(string country)
-        => Country = country;
-
-    public void SetMicCode(string micCode)
-        => MicCode = micCode;
+        return this;
+    }
 
     public override string ToString()
         => $"{base.ToString()}, " +
@@ -37,20 +40,4 @@ public sealed class Product(string symbol) : AggregateRoot<long, Guid>(Guid.NewG
            $"{nameof(Exchange)}: {Exchange}, " +
            $"{nameof(Country)}: {Country}, " +
            $"{nameof(MicCode)}: {MicCode}";
-
-    public Product Update(string? name, string? currency, string? exchange, string? country, string? micCode)
-    {
-        if (!string.IsNullOrWhiteSpace(name))
-            SetName(name);
-        if (!string.IsNullOrWhiteSpace(currency))
-            SetCurrency(currency);
-        if (!string.IsNullOrWhiteSpace(exchange))
-            SetExchange(exchange);
-        if (!string.IsNullOrWhiteSpace(country))
-            SetCountry(country);
-        if (!string.IsNullOrWhiteSpace(micCode))
-            SetMicCode(micCode);
-
-        return this;
-    }
 }

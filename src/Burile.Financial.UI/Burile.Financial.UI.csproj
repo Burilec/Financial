@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
     <PropertyGroup>
         <TargetFramework>net8.0</TargetFramework>
@@ -7,20 +7,23 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter" Version="8.0.1"/>
-        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="8.0.1"/>
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.1"/>
-        <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.0"/>
+        <PackageReference Include="Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter"/>
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design"/>
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Burile.Financial.Infrastructure\Burile.Financial.Infrastructure.csproj"/>
-        <ProjectReference Include="..\Burile.Financial.UI.Client\Burile.Financial.UI.Client.csproj"/>
+        <ProjectReference Include="..\Burile.Financial.Infrastructure\Burile.Financial.Infrastructure.csproj" />
+        <ProjectReference Include="..\Burile.Financial.UI.Client\Burile.Financial.UI.Client.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-        <_ContentIncludedByDefault Remove="Burile.Financial.UI\obj\Burile.Financial.UI.csproj.nuget.dgspec.json"/>
-        <_ContentIncludedByDefault Remove="Burile.Financial.UI\obj\project.assets.json"/>
+        <_ContentIncludedByDefault Remove="Burile.Financial.UI\obj\Burile.Financial.UI.csproj.nuget.dgspec.json" />
+        <_ContentIncludedByDefault Remove="Burile.Financial.UI\obj\project.assets.json" />
     </ItemGroup>
 
 </Project>

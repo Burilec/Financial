@@ -16,7 +16,7 @@ public sealed class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<Fin
         var connectionString = configuration.GetConnectionString("Api");
 
         optionsBuilder.UseMySql(connectionString ?? throw new InvalidOperationException(),
-                                ServerVersion.AutoDetect(connectionString),
+                                ServerVersion.AutoDetect(connectionString)!,
                                 static x => x.MigrationsAssembly(typeof(FinancialContext).Assembly.GetName().Name));
 
         return new(optionsBuilder.Options);

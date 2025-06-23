@@ -23,6 +23,8 @@ public sealed partial class Index
             TotalItems = result.Value.TotalRecords
         };
 
+        //var gridData = new GridData<Portfolio>();
+
         return gridData;
     }
 

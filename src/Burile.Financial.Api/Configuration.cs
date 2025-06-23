@@ -33,7 +33,7 @@ public static class Configuration
     private static Action<WebHostBuilderContext, IServiceCollection> ConfigureServices()
         => static (context, service)
             => service.AddEndpointsApiExplorer()
-                      .AddSwaggerGen()
+                      .AddSwaggerGen()!
                       .AddMySqlDbContext<FinancialContext>(context.Configuration,
                                                            context.Configuration.GetConnectionString("Api"),
                                                            ServiceLifetime.Scoped,
@@ -48,8 +48,8 @@ public static class Configuration
                                   .AllowAnyMethod()
                                   .AllowAnyHeader();
                        }))
-                      .AddFluentValidationAutoValidation()
-                      .AddFluentValidationClientsideAdapters()
-                      .AddValidatorsFromAssembly(typeof(Program).Assembly)
+                      .AddFluentValidationAutoValidation()!
+                      .AddFluentValidationClientsideAdapters()!
+                      .AddValidatorsFromAssembly(typeof(Program).Assembly)!
                       .AddControllers();
 }

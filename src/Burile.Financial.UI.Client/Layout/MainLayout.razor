@@ -1,15 +1,41 @@
 ﻿@inherits LayoutComponentBase
 
 <MudThemeProvider IsDarkMode="true"/>
-<MudDialogProvider
+@* <MudDialogProvider
     FullWidth="true"
     MaxWidth="MaxWidth.ExtraSmall"
     CloseButton="true"
-    DisableBackdropClick="true"
     NoHeader="true"
     Position="DialogPosition.Center"
     CloseOnEscapeKey="true"/>
-<MudSnackbarProvider/>
+<MudSnackbarProvider/> *@
+
+@* <MudThemeProvider>
+    <MudDialogProvider>
+        <MudSnackbarProvider>
+            <MudPopoverProvider>
+                <div class="main-layout">
+                    <div class="sidebar">
+                        <!-- Sidebar content here -->
+                    </div>
+                    <div class="content">
+                        @Body
+                    </div>
+                </div>
+            </MudPopoverProvider>
+        </MudSnackbarProvider>
+    </MudDialogProvider>
+</MudThemeProvider> *@
+
+@* Required *@
+<MudThemeProvider />
+<MudPopoverProvider />
+
+@* Needed for dialogs *@
+<MudDialogProvider />
+
+@* Needed for snackbars *@
+<MudSnackbarProvider />
 
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet"/>
 <link href="_content/MudBlazor/MudBlazor.min.css" rel="stylesheet"/>
