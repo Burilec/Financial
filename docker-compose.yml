@@ -1,18 +1,17 @@
 version: '3.8'
 
 services:
-  mysql:
-    image: mysql:8.0
-    container_name: mysql
+  postgres:
+    image: postgres:latest
+    container_name: postgres
     ports:
-      - "3306:3306"
+      - "5432:5432"
     environment:
-      - MYSQL_DATABASE=Financial
-      - MYSQL_PASSWORD=Burile123!
-      - MYSQL_USER=burile
-      - MYSQL_ROOT_PASSWORD=123456
+      - POSTGRES_DB=Financial
+      - POSTGRES_USER=burile
+      - POSTGRES_PASSWORD=Burile123!
     volumes:
-      - mysqldata:/var/lib/mysql
+      - postgresdata:/var/lib/postgresql/data
   
   zookeeper:
     container_name: zookeeper
@@ -56,5 +55,5 @@ services:
       - "6379:6379"
 
 volumes:
-  mysqldata:
+  postgresdata:
     external: false

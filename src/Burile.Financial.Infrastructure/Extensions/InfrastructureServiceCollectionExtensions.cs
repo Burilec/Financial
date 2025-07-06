@@ -1,15 +1,13 @@
 using System.Reflection;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Burile.Financial.Infrastructure.Extensions;
 
 public static class InfrastructureServiceCollectionExtensions
 {
-    public static IServiceCollection AddMySqlDbContext<TDbContext>(
+    public static IServiceCollection AddDbContext<TDbContext>(
         this IServiceCollection services,
-        IConfiguration configuration,
         string? connectionString,
         ServiceLifetime? serviceLifetime,
         params Assembly[] interceptorsAssemblies) where TDbContext : DbContext
@@ -19,12 +17,9 @@ public static class InfrastructureServiceCollectionExtensions
             throw new InvalidOperationException($"Connection string for {nameof(TDbContext)} was not found.");
         }
 
-        var maxRetryCount = configuration.GetValue<int>("MySql:MaxRetryCount");
-
         services.AddDbContext<TDbContext>((provider, optionsBuilder) =>
         {
-            optionsBuilder.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString),
-                                    mysqlBuilder => mysqlBuilder.EnableRetryOnFailure(maxRetryCount));
+            optionsBuilder.UseNpgsql(connectionString ?? throw new InvalidOperationException());
 
             var interceptors = provider.ResolveEfCoreInterceptors(interceptorsAssemblies);
 
@@ -36,13 +31,4 @@ public static class InfrastructureServiceCollectionExtensions
 
         return services;
     }
-
-    // public static IServiceCollection AddUnitOfWork<TDbContext>(this IServiceCollection services,
-    //                                                            ServiceLifetime serviceLifetime = ServiceLifetime.Scoped)
-    //     where TDbContext : DbContext
-    // {
-    //     services.TryAdd(new ServiceDescriptor(typeof(IUnitOfWork), typeof(UnitOfWork<TDbContext>), serviceLifetime));
-    //
-    //     return services;
-    // }
 }

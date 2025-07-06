@@ -2,7 +2,6 @@ using Burile.Financial.Api.Features.RetrieveEtfs;
 using Burile.Financial.Infrastructure.Data.Contexts;
 using Burile.Financial.Infrastructure.Extensions;
 using FluentValidation;
-using FluentValidation.AspNetCore;
 
 namespace Burile.Financial.Api;
 
@@ -34,13 +33,11 @@ public static class Configuration
         => static (context, service)
             => service.AddEndpointsApiExplorer()
                       .AddSwaggerGen()
-                      .AddMySqlDbContext<FinancialContext>(context.Configuration,
-                                                           context.Configuration.GetConnectionString("Api"),
-                                                           ServiceLifetime.Scoped,
-                                                           typeof(Program).Assembly, typeof(FinancialContext).Assembly)
+                      .AddDbContext<FinancialContext>(context.Configuration.GetConnectionString("Api"),
+                                                      ServiceLifetime.Scoped,
+                                                      typeof(Program).Assembly, typeof(FinancialContext).Assembly)
                       .AddHttpClient()
-                      .AddMediatR(static configuration =>
-                                      configuration.RegisterServicesFromAssemblyContaining<Program>())
+                      .AddMediatR(static c => c.RegisterServicesFromAssemblyContaining<Program>())
                       .AddRetrieveEtfsServices()
                       .AddCors(static options => options.AddDefaultPolicy(static builder =>
                        {
@@ -48,8 +45,6 @@ public static class Configuration
                                   .AllowAnyMethod()
                                   .AllowAnyHeader();
                        }))
-                      .AddFluentValidationAutoValidation()
-                      .AddFluentValidationClientsideAdapters()
                       .AddValidatorsFromAssembly(typeof(Program).Assembly)
                       .AddControllers();
 }
